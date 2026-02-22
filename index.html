@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Öğrenci Not Takip Sistemi</title>
+    <link rel="stylesheet" href="stil.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎓 Not Takip Sistemi</h1>
+            <button id="darkModeToggle"> Karanlık Mod</button>
+        </header>
+
+        <section class="user-info">
+            <div class="input-group">
+                <label for="userName">Öğrenci Adı Soyadı:</label>
+                <input type="text" id="userName" placeholder="Adınızı girin..." autocomplete="off">
+            </div>
+            <div class="input-group">
+                <label for="studentId">Öğrenci Numarası:</label>
+                <input type="number" id="studentId" placeholder="Örn: 20230101" autocomplete="off">
+            </div>
+        </section>
+
+        <section class="input-section">
+            <div class="input-group">
+                <label for="courseName">Ders Adı</label>
+                <input type="text" id="courseName" placeholder="Örn: Algoritma" autocomplete="off">
+            </div>
+            <div class="input-group">
+                <label for="vize">Vize Notu (%40)</label>
+                <input type="number" id="vize" min="0" max="100" placeholder="0 - 100">
+            </div>
+            <div class="input-group">
+                <label for="final">Final Notu (%60)</label>
+                <input type="number" id="final" min="0" max="100" placeholder="0 - 100">
+            </div>
+            <button id="addBtn">Not Ekle</button>
+        </section>
+
+        <section class="table-section">
+            <div class="table-responsive">
+                <table id="gradeTable">
+                    <thead>
+                        <tr>
+                            <th>Öğrenci No</th>
+                            <th>Ad Soyad</th>
+                            <th>Ders Adı</th>
+                            <th>Vize</th>
+                            <th>Final</th>
+                            <th>Ort.</th>
+                            <th>Harf</th>
+                            <th>Durum</th>
+                            <th>İşlem</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        </tbody>
+                </table>
+            </div>
+            <div class="actions">
+                <button id="clearAllBtn" class="danger-btn"> Tüm Verileri Temizle</button>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
