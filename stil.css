@@ -1,0 +1,161 @@
+:root {
+    --bg-color: #f4f7f6;
+    --container-bg: #ffffff;
+    --text-color: #333333;
+    --primary-color: #4CAF50;
+    --primary-hover: #45a049;
+    --danger-color: #f44336;
+    --danger-hover: #da190b;
+    --border-color: #dddddd;
+    --input-bg: #ffffff;
+}
+
+body.dark-mode {
+    --bg-color: #1a1a2e;
+    --container-bg: #16213e;
+    --text-color: #f4f4f4;
+    --border-color: #444444;
+    --input-bg: #2a2a4a;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: var(--container-bg);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s;
+}
+
+#darkModeToggle {
+    background-color: var(--text-color);
+    color: var(--container-bg);
+}
+
+/* Kullanıcı Bilgileri ve Not Girişi Alanları */
+.user-info, .input-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+    align-items: flex-end;
+}
+
+.input-section {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed var(--border-color);
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 150px;
+}
+
+label {
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+input {
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    outline: none;
+}
+
+input:focus {
+    border-color: var(--primary-color);
+}
+
+#addBtn {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px 25px;
+    height: 40px;
+}
+
+#addBtn:hover { background-color: var(--primary-hover); }
+
+/* Tablo Tasarımı */
+.table-responsive {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 0.95rem;
+}
+
+th, td {
+    padding: 12px 10px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+th {
+    background-color: rgba(0,0,0,0.03);
+    font-weight: 600;
+}
+
+body.dark-mode th {
+    background-color: rgba(255,255,255,0.05);
+}
+
+.danger-btn {
+    background-color: var(--danger-color);
+    color: white;
+    margin-top: 25px;
+    float: right;
+}
+
+.danger-btn:hover { background-color: var(--danger-hover); }
+
+.gecti { color: #4CAF50; font-weight: bold; }
+.kaldi { color: #f44336; font-weight: bold; }
+
+@media (max-width: 768px) {
+    .user-info, .input-section { flex-direction: column; }
+    .input-group { width: 100%; }
+    #addBtn { width: 100%; margin-top: 10px; }
+    header { flex-direction: column; gap: 15px; text-align: center; }
+}
