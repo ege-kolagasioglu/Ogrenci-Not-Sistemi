@@ -5,44 +5,100 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Öğrenci Not Takip Sistemi</title>
     <link rel="stylesheet" href="stil.css">
+    <!--chart.js ekliyoruz grafik oluşturmak için süpr-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
+    <link rel="icon" type="image/png" href="ARY.ico">
 </head>
 <body>
-    <div class="container">
+
+
+    <div class="konteyner">
         <header>
-            <h1>🎓 Not Takip Sistemi</h1>
-            <button id="darkModeToggle"> Karanlık Mod</button>
+            <h1>Not Takip Sistemi</h1>
+            <button id="karanlikModButon">Karanlık Mod</button>
         </header>
 
-        <section class="user-info">
-            <div class="input-group">
-                <label for="userName">Öğrenci Adı Soyadı:</label>
-                <input type="text" id="userName" placeholder="Adınızı girin..." autocomplete="off">
+        <details class="sistem-ayarlari">
+
+            <summary>Hesaplama Ayarlarını Değiştir (Vize/Final Oranları)</summary>
+
+            <div class="ayar-icerik">
+                <div class="input-grup">
+
+                    <label for="vizeOran">Vize Etkisi (%):</label>
+
+                    <input type="number" id="vizeOran" value="40" min="0" max="100">
+                </div>
+
+
+                <div class="input-grup">
+
+                    <label for="finalOran">Final Etkisi (%):</label>
+
+                    <input type="number" id="finalOran" value="60" min="0" max="100" disabled><!--bunu değiştirmeyı kapatıyoruz vizeye göre şekil alıyor-->
+                </div>
+                <p><small>* Değişiklikler sadece yeni eklenecek notlar için geçerli olur.</small></p>
             </div>
-            <div class="input-group">
-                <label for="studentId">Öğrenci Numarası:</label>
-                <input type="number" id="studentId" placeholder="Örn: 20230101" autocomplete="off">
+
+        </details>
+
+
+        <section id="ozetAlani" class="ozet-kartlari"></section>
+
+        <section class="kullanici-bilgi">
+            <div class="input-grup">
+                <label for="ogrenciAdi">Öğrenci Adı Soyadı:</label>
+                <input type="text" id="ogrenciAdi" placeholder="Örn: Mert Özçelik" autocomplete="off">
+            </div>
+            <div class="input-grup">
+                <label for="ogrenciNo">Öğrenci Numarası:</label>
+                <input type="number" id="ogrenciNo" placeholder="Örn: 20230101">
             </div>
         </section>
 
-        <section class="input-section">
-            <div class="input-group">
-                <label for="courseName">Ders Adı</label>
-                <input type="text" id="courseName" placeholder="Örn: Algoritma" autocomplete="off">
+        <section class="giris-alani">
+
+            <div class="input-grup">
+
+                <label for="dersSecimi">Ders Seçin:</label>
+
+                <select id="dersSecimi">
+                    <option value="">-- Ders Seçiniz --</option>
+                    <option value="Algoritma ve Programlama">Algoritma ve Programlama</option>
+                    <option value="Veri Tabanı Yönetimi">Veri Tabanı Yönetimi</option>
+                    <option value="Web Geliştirme">Web Geliştirme</option>
+                    <option value="Nesne Yönelimli Programlama">Nesne Yönelimli Programlama</option>
+                    <option value="Matematik ">Matematik</option>
+                    <option value="Yapay Zeka Giriş">Yapay Zeka Giriş</option>
+                </select>
+
             </div>
-            <div class="input-group">
-                <label for="vize">Vize Notu (%40)</label>
-                <input type="number" id="vize" min="0" max="100" placeholder="0 - 100">
+
+            <div class="input-grup">
+
+                <label for="vizeNotu">Vize Notu</label>
+                <input type="number" id="vizeNotu" min="0" max="100" placeholder="0-100">
+
             </div>
-            <div class="input-group">
-                <label for="final">Final Notu (%60)</label>
-                <input type="number" id="final" min="0" max="100" placeholder="0 - 100">
+
+            <div class="input-grup">
+
+                <label for="finalNotu">Final Notu</label>
+                <input type="number" id="finalNotu" min="0" max="100" placeholder="0-100">
+
             </div>
-            <button id="addBtn">Not Ekle</button>
+
+            <button id="ekleButon">Not Ekle</button>
+
         </section>
 
-        <section class="table-section">
-            <div class="table-responsive">
-                <table id="gradeTable">
+
+        <section class="tablo-alani">
+
+            <div class="tablo-duyarli">
+
+                <table id="notTablosu">
+
                     <thead>
                         <tr>
                             <th>Öğrenci No</th>
@@ -56,14 +112,28 @@
                             <th>İşlem</th>
                         </tr>
                     </thead>
-                    <tbody id="tableBody">
+                    <tbody id="tabloGövdesi">
                         </tbody>
                 </table>
             </div>
-            <div class="actions">
-                <button id="clearAllBtn" class="danger-btn"> Tüm Verileri Temizle</button>
+            <div class="islemler">
+                <button id="tumunuTemizleButon" class="tehlike-buton">Tüm Verileri Temizle</button>
             </div>
         </section>
+
+        <section class="grafik-alani">
+            <h3>Derslere Göre Başarı Grafiği</h3>
+
+            <div class="grafik-kapsayici">
+                
+                <canvas id="ortalamaGrafigi"></canvas>
+            </div>
+        </section>
+
+    
+        <footer>
+            <p>&copy; 2026 da Mert Özçelik tarafından geliştirilmiştir. Hiçbir hakkı saklı falan değildir çalabilirsiniz. :)</p>
+        </footer>
     </div>
 
     <script src="script.js"></script>
